@@ -1,0 +1,16 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Address Verify</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="overlay"><div class="container">
+<header><h2>📍 Address Verify</h2><a href="index.html">Back</a></header>
+<div class="card">
+<input id="addr" placeholder="Enter full address">
+<button onclick="verify()">Verify</button>
+<pre id="out"></pre>
+</div></div></div>
+<script>
+async function verify(){
+  const r = await fetch("http://localhost:8080/verifyGlobal?address="+encodeURIComponent(addr.value));
+  const d = await r.json(); out.textContent = JSON.stringify(d,null,2);
+}
+</script>
+</body></html>

@@ -1,0 +1,12 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Edge Sim</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="overlay"><div class="container">
+<header><h2>🧪 5G + Edge</h2><a href="index.html">Back</a></header>
+<div class="card">
+<button onclick="run()">Run Edge Sim</button>
+<pre id="out"></pre>
+</div></div></div>
+<script>
+async function run(){ const r = await fetch("http://localhost:8080/edgeSim"); const d = await r.json(); out.textContent = JSON.stringify(d,null,2); }
+</script>
+</body></html>

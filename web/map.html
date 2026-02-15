@@ -1,0 +1,23 @@
+
+<!DOCTYPE html><html><head>
+<meta charset="utf-8"><title>World Map</title><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body><div class="overlay"><div class="container">
+<header><h2>🗺️ World Map</h2><a href="index.html">Back</a></header>
+<div class="card">
+<div id="map" class="map"></div>
+<input id="addr" placeholder="Paste address to verify">
+<button onclick="verify()">Verify Address</button>
+<pre id="out"></pre>
+</div></div></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map').setView([20,0],2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(map);
+async function verify(){
+  const r = await fetch("http://localhost:8080/verifyGlobal?address="+encodeURIComponent(addr.value));
+  const d = await r.json(); out.textContent = JSON.stringify(d,null,2);
+}
+</script>
+</body></html>
